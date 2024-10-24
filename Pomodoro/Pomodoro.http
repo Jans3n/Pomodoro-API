@@ -1,0 +1,59 @@
+@Pomodoro_HostAddress = https://localhost:7044
+
+
+GET {{Pomodoro_HostAddress}}/api/tasks
+
+###
+
+POST {{Pomodoro_HostAddress}}/api/tasks
+Content-Type: application/json
+
+{
+  "taskDescription": "poep",
+  "pomodoros": 0,
+  "pomodorosPassed": 0,
+  "isComplete": true
+}
+
+###
+
+GET {{Pomodoro_HostAddress}}/api/Tasks/2
+
+###
+
+PUT {{Pomodoro_HostAddress}}/api/tasks/2
+Content-Type: application/json
+
+{
+  "id": 2,
+  "taskDescription": "lol1",
+  "pomodoros": 0,
+  "pomodorosPassed": 0,
+  "isComplete": true
+}
+
+###
+
+
+PATCH {{Pomodoro_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+false
+
+###
+
+PUT {{Pomodoro_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+{
+  //Tasks
+}
+
+###
+
+PATCH {{Pomodoro_HostAddress}}/api/tasks/1
+Content-Type: application/json
+
+False
+
+###

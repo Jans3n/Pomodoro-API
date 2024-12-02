@@ -60,14 +60,16 @@ namespace Pomodoro.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var UserExists = await _userManager.FindByNameAsync(model.Username);
-            if (UserExists != null)
+            var emailExists = await _userManager.FindByEmailAsync(model.Email);
+            if (UserExists != null || emailExists != null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new AuthResponseModel
                 {
                     Status = "Error",
-                    Message = "User already exists!"
+                    Message = "User or Email already exists!"
                 });
             }
+
 
             IdentityUser user = new()
             {
@@ -98,13 +100,14 @@ namespace Pomodoro.Controllers
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
-            var userExists = await _userManager.FindByNameAsync(model.Username);
-            if (userExists != null)
+            var UserExists = await _userManager.FindByNameAsync(model.Username);
+            var emailExists = await _userManager.FindByEmailAsync(model.Email);
+            if (UserExists != null || emailExists != null)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, new AuthResponseModel
                 {
                     Status = "Error",
-                    Message = "User already exists!"
+                    Message = "User or Email already exists!"
                 });
             }
 
